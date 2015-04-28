@@ -1,25 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bOn-L4-9Xw">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--LocationScreen-->
+        <scene sceneID="Jvp-So-pZu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController title="LocationScreen" id="bOn-L4-9Xw" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="40E-fx-5hl"/>
+                        <viewControllerLayoutGuide type="bottom" id="bIv-2a-CYG"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="eCj-9G-N9g">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsk-Ff-KhZ">
+                                <rect key="frame" x="246" y="485" width="109" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fetchCameras:" destination="bOn-L4-9Xw" eventType="touchUpInside" id="ihJ-pR-geM"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RVC-Vy-FgK">
+                                <rect key="frame" x="103" y="76" width="394" height="328"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Bsk-Ff-KhZ" secondAttribute="centerX" id="0N8-mj-A0N"/>
+                            <constraint firstItem="RVC-Vy-FgK" firstAttribute="top" secondItem="40E-fx-5hl" secondAttribute="bottom" constant="56" id="3XU-5f-KAR"/>
+                            <constraint firstItem="RVC-Vy-FgK" firstAttribute="centerX" secondItem="Bsk-Ff-KhZ" secondAttribute="centerX" constant="-0.5" id="Dbu-gx-NFC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RVC-Vy-FgK" secondAttribute="trailing" constant="87" id="GFj-hi-qiO"/>
+                            <constraint firstItem="Bsk-Ff-KhZ" firstAttribute="top" secondItem="RVC-Vy-FgK" secondAttribute="bottom" constant="81" id="MTP-9g-20t"/>
+                            <constraint firstItem="bIv-2a-CYG" firstAttribute="top" secondItem="Bsk-Ff-KhZ" secondAttribute="bottom" constant="56" id="Qob-6x-DpV"/>
+                            <constraint firstItem="RVC-Vy-FgK" firstAttribute="leading" secondItem="eCj-9G-N9g" secondAttribute="leadingMargin" constant="87" id="smM-Le-gle"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraImage" destination="RVC-Vy-FgK" id="cJn-Bz-rhT"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iAf-9N-8Ri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="662" y="-148"/>
         </scene>
     </scenes>
 </document>
