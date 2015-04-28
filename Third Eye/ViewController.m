@@ -23,8 +23,7 @@ NSString *cameraId = nil;
     NSLog(@"Fetch cameras");
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    [locationManager startUpdatingLocation];
+    cameraId = nil;
     if (currentLocation != nil) {
         NSString *requestedURL=[NSString stringWithFormat:@"https://api.evercam.io/v1/public/cameras/nearest?near_to=%lf,%lf&api_id=911566ac&api_key=2af132b6b2c0a9a4baab812b1352a666", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
         NSURL *url = [NSURL URLWithString:[requestedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -71,8 +70,9 @@ NSString *cameraId = nil;
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    //NSLog(@"didUpdateToLocation: %@", newLocation);
+    NSLog(@"didUpdateToLocation: %@", newLocation);
     currentLocation = newLocation;
+    
     if(cameraId!=nil){
         NSLog(@"updatingimage");
         image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:cameraId]]];
@@ -82,25 +82,46 @@ NSString *cameraId = nil;
 
 
 }
+- (void)requestAlwaysAuthorization
+{
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    //NSLog(@"%@",status);
+    // If the status is denied or only granted for when in use, display an alert
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied||status==NULL) {
+        NSString *title;
+        title = (status == kCLAuthorizationStatusDenied) ? @"Location services are off" : @"Background location is not enabled";
+        NSString *message = @"To use background location you must turn on 'Always' in the Location Services Settings";
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                            message:message
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Settings", nil];
+        [alertView show];
+    }
+    // The user has not enabled any location services. Request background authorization.
+    else if (status == kCLAuthorizationStatusNotDetermined) {
+        [locationManager requestAlwaysAuthorization];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        // Send the user to the Settings for this app
+        NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        [[UIApplication sharedApplication] openURL:settingsURL];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _cameraImage.contentMode  = UIViewContentModeScaleAspectFit;
     _cameraImage.clipsToBounds = YES;
-
-    if([CLLocationManager locationServicesEnabled]){
-        
-        //NSLog(@"Location Services Enabled");
-        
-        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
-                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
-                                              delegate:nil
-                                     cancelButtonTitle:@"OK"
-                                     otherButtonTitles:nil];
-            [alert show];
-        }
-    }
     locationManager = [[CLLocationManager alloc] init];
+    [locationManager startUpdatingLocation];
+    [self requestAlwaysAuthorization];
+    
+    //[locationManager startUpdatingLocation];
     // Do any additional setup after loading the view, typically from a nib.
 }
 - (void)didReceiveMemoryWarning {
