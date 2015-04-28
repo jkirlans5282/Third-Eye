@@ -17,8 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RVC-Vy-FgK">
+                                <rect key="frame" x="16" y="28" width="568" height="389"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsk-Ff-KhZ">
-                                <rect key="frame" x="246" y="485" width="109" height="53"/>
+                                <rect key="frame" x="246" y="497" width="109" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="Refresh">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,19 +30,16 @@
                                     <action selector="fetchCameras:" destination="bOn-L4-9Xw" eventType="touchUpInside" id="ihJ-pR-geM"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RVC-Vy-FgK">
-                                <rect key="frame" x="103" y="76" width="394" height="328"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Bsk-Ff-KhZ" secondAttribute="centerX" id="0N8-mj-A0N"/>
-                            <constraint firstItem="RVC-Vy-FgK" firstAttribute="top" secondItem="40E-fx-5hl" secondAttribute="bottom" constant="56" id="3XU-5f-KAR"/>
+                            <constraint firstItem="RVC-Vy-FgK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="40E-fx-5hl" secondAttribute="bottom" constant="10" id="3XU-5f-KAR"/>
                             <constraint firstItem="RVC-Vy-FgK" firstAttribute="centerX" secondItem="Bsk-Ff-KhZ" secondAttribute="centerX" constant="-0.5" id="Dbu-gx-NFC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RVC-Vy-FgK" secondAttribute="trailing" constant="87" id="GFj-hi-qiO"/>
-                            <constraint firstItem="Bsk-Ff-KhZ" firstAttribute="top" secondItem="RVC-Vy-FgK" secondAttribute="bottom" constant="81" id="MTP-9g-20t"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="RVC-Vy-FgK" secondAttribute="trailing" constant="5" id="GFj-hi-qiO"/>
+                            <constraint firstItem="Bsk-Ff-KhZ" firstAttribute="top" secondItem="RVC-Vy-FgK" secondAttribute="bottom" constant="50" id="MTP-9g-20t"/>
                             <constraint firstItem="bIv-2a-CYG" firstAttribute="top" secondItem="Bsk-Ff-KhZ" secondAttribute="bottom" constant="56" id="Qob-6x-DpV"/>
-                            <constraint firstItem="RVC-Vy-FgK" firstAttribute="leading" secondItem="eCj-9G-N9g" secondAttribute="leadingMargin" constant="87" id="smM-Le-gle"/>
+                            <constraint firstItem="RVC-Vy-FgK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eCj-9G-N9g" secondAttribute="leadingMargin" constant="5" id="smM-Le-gle"/>
                         </constraints>
                     </view>
                     <connections>
@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAf-9N-8Ri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="662" y="-148"/>
+            <point key="canvasLocation" x="661" y="-137"/>
         </scene>
     </scenes>
 </document>

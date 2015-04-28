@@ -17,7 +17,8 @@
 @synthesize cameraImage=_cameraImage;
 CLLocationManager *locationManager;
 CLLocation *currentLocation;
-
+UIImage *image=nil;
+NSString *cameraId = nil;
 -(IBAction)fetchCameras:(id)sender{
     NSLog(@"Fetch cameras");
     locationManager.delegate = self;
@@ -28,6 +29,7 @@ CLLocation *currentLocation;
         NSString *requestedURL=[NSString stringWithFormat:@"https://api.evercam.io/v1/public/cameras/nearest?near_to=%lf,%lf&api_id=911566ac&api_key=2af132b6b2c0a9a4baab812b1352a666", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
         NSURL *url = [NSURL URLWithString:[requestedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         NSLog([url absoluteString]);
+        
         NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
         
         [request setHTTPMethod:@"GET"];
@@ -45,14 +47,15 @@ CLLocation *currentLocation;
         //After that it depends upon the json format whether it is DICTIONARY or ARRAY
 
         NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:responseData options: NSJSONReadingMutableContainers error: &err];
-        
-        //NSURL *urll = [NSURL URLWithString:[jsonArray valueForKeyPath:@"cameras.thumbnail_url"]];
-        NSArray* array=[jsonArray valueForKeyPath:@"cameras.thumbnail_url"];
+        NSArray* array=[jsonArray valueForKeyPath:@"cameras.id"];
         NSLog(@"%@", array[0]);
-        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: array[0]]];
-        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:array[0]]]];
+        cameraId = [NSString stringWithFormat:@"https://api.evercam.io/v1/cameras/%@/live/snapshot?api_id=911566ac&api_key=2af132b6b2c0a9a4baab812b1352a666", array[0]];
+        
+        image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.evercam.io/v1/cameras/%@/live/snapshot?api_id=911566ac&api_key=2af132b6b2c0a9a4baab812b1352a666", array[0]]]]];
+        
+        
         [_cameraImage setImage:image];
-
+        NSLog(@"done");
     }
    
     
@@ -64,18 +67,25 @@ CLLocation *currentLocation;
     UIAlertView *errorAlert = [[UIAlertView alloc]
                                initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [errorAlert show];
+
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     //NSLog(@"didUpdateToLocation: %@", newLocation);
     currentLocation = newLocation;
+    if(cameraId!=nil){
+        NSLog(@"updatingimage");
+        image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:cameraId]]];
+        [_cameraImage setImage:image];
+        
+    }
 
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     _cameraImage.contentMode  = UIViewContentModeScaleAspectFit;
-    _cameraImage.clipsToBounds = NO;
+    _cameraImage.clipsToBounds = YES;
 
     if([CLLocationManager locationServicesEnabled]){
         
