@@ -24,7 +24,9 @@ NSString *cameraId = nil;
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     cameraId = nil;
+    NSLog(@"nil");
     if (currentLocation != nil) {
+        NSLog(@"not nil");
         NSString *requestedURL=[NSString stringWithFormat:@"https://api.evercam.io/v1/public/cameras/nearest?near_to=%lf,%lf&api_id=911566ac&api_key=2af132b6b2c0a9a4baab812b1352a666", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
         NSURL *url = [NSURL URLWithString:[requestedURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         NSLog([url absoluteString]);
@@ -85,7 +87,6 @@ NSString *cameraId = nil;
 - (void)requestAlwaysAuthorization
 {
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    //NSLog(@"%@",status);
     // If the status is denied or only granted for when in use, display an alert
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied||status==NULL) {
         NSString *title;

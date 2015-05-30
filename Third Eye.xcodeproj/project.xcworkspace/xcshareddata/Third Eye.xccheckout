@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>137736DC-6D1B-49C1-850E-1E252B42D6D6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Third Eye</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>232C59D8FF4BDCF83BC009209EBEF0ED03F114E2</key>
+		<string>https://github.com/jkirlans5282/Third-Eye.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Third Eye.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>232C59D8FF4BDCF83BC009209EBEF0ED03F114E2</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jkirlans5282/Third-Eye.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>232C59D8FF4BDCF83BC009209EBEF0ED03F114E2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>232C59D8FF4BDCF83BC009209EBEF0ED03F114E2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Third%20Eye</string>
+		</dict>
+	</array>
+</dict>
+</plist>
